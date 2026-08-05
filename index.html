@@ -684,6 +684,7 @@ success_by_rocket
           <details class="code-dropdown">
     <summary>View R Code</summary>
     <pre><code>
+      
 # Parsed dates
 games_parsed <- games |> 
   mutate(
@@ -697,7 +698,7 @@ release_year <- games_parsed |>
   count(year) |> 
   filter(year <= 2022)
 
-# 3. Game count plot
+# Game count plot
 game_count <- ggplot(release_year, aes(x = year, y = n)) +
   geom_line(color = "#F26522", linewidth = 2) +
   geom_point(color = "#F26522", size = 3) +
@@ -753,7 +754,7 @@ compared_plots +
     axis.text = element_text(color = "grey80"),
     axis.title.x = element_text(color = "white", margin = margin(t = 12)),
     axis.title.y = element_text(color = "white", margin = margin(r = 15))
-  )   
+  )    
     </code></pre>
           </details>
           
