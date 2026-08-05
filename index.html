@@ -682,91 +682,76 @@ success_by_rocket
           <details class="code-dropdown">
     <summary>View R Code</summary>
     <pre><code>
-# parsing dates
-games_parsed <-
-  games |> 
-mutate(
-  release_date = mdy(`Release Date`),
-  year = year(release_date)
-)
+# Parsed dates
+games_parsed <- games |> 
+  mutate(
+    release_date = mdy(`Release Date`),
+    year = year(release_date)
+  )
 
-# filtering NA, and obtaining count of years before 2022
-release_year <-
-  games_parsed |>
+# Filtered NA & counted releases before 2022
+release_year <- games_parsed |>
   filter(!is.na(year)) |> 
   count(year) |> 
   filter(year <= 2022)
 
-# count of games over time
-game_count <-
-  ggplot(
-  release_year,
-       aes(
-         x = year,
-         y = n
-       )
-    ) +
-  geom_line(color = "#F26522", size = 1) +
-  geom_point(color = "#F26522", size = 2) +
+# 3. Game count plot
+game_count <- ggplot(release_year, aes(x = year, y = n)) +
+  geom_line(color = "#F26522", linewidth = 2) +
+  geom_point(color = "#F26522", size = 3) +
   scale_y_continuous(breaks = seq(0, 125, by = 25)) +
-    labs(
-      title = "Popular Video Game Releases",
-      y = "Number of Games",
-      x = "Release Year"
-    ) +
-  theme_minimal() +
-  theme(
-  plot.title = element_text(face = "bold", color = "white"),
-  text = element_text(color = "white"),
-  axis.text = element_text(color = "white"),
-  plot.background = element_rect(fill = "black", color = "black"),
-  panel.background = element_rect(fill = "white"))
+  labs(
+    title = "Popular Video Game Releases",
+    x = "Release Year",
+    y = "Number of Games"
+  )
 
-# filtering years
-# standardizing total
-total_plays_data <-
-  games_parsed |> 
+# Standardized total plays data
+total_plays_data <- games_parsed |> 
   filter(!is.na(year) & year <= 2022) |> 
+  mutate(
+    plays_clean = as.numeric(gsub("K", "", Plays)) * ifelse(grepl("K", Plays), 1000, 1)
+  ) |> 
   group_by(year) |> 
   summarize(
-    total_annual_plays = sum(as.numeric(Plays), na.rm = TRUE)
+    total_annual_plays = sum(plays_clean, na.rm = TRUE)
   )
 
-# total plays plot
-total_plays <- 
-  total_plays_data |> 
-ggplot(
-  aes(
-    x = year,
-    y = total_annual_plays
-  )
-) +
-  geom_line(
-    color = "#00B7EB", size = 1) +
-  geom_point(color = "#00B7EB", size = 2) +
+# Total plays plot
+total_plays <- ggplot(total_plays_data, aes(x = year, y = total_annual_plays)) +
+  geom_line(color = "#00B7EB", linewidth = 2) +
+  geom_point(color = "#00B7EB", size = 3) +
+  scale_y_continuous(
+    breaks = seq(0, 600000, by = 100000),
+    labels = scales::label_number(scale_cut = scales::cut_short_scale())
+  ) +
   labs(
     title = "Total Annual Plays",
     x = "Release Year",
     y = "Total Plays"
-  ) +
-  theme_minimal() + theme(
-  plot.title = element_text(face = "bold", color = "white"),
-  text = element_text(color = "white"),
-  axis.text = element_text(color = "white"),
-  plot.background = element_rect(fill = "black", color = "black"),
-  panel.background = element_rect(fill = "white"))
+  )
 
-compared_plots <-
-  game_count /  total_plays
+# Patchwork comparison layout & theme
+compared_plots <- game_count / total_plays
+
 compared_plots +
   plot_annotation(
-    title = "Evolution of the Game Industry across Forty Years",
+    title = "Evolution of the Game Industry across Four Decades",
     subtitle = "Comparing Release Volume and Player Engagement (1980-2022)",
-    caption = "Data from Backloggd") &
+    caption = "Data from Backloggd"
+  ) &
+  theme_minimal() &
   theme(
-    plot.background = element_rect(fill = "black", color = "black"),
-    text = element_text(color = "white")
-  )
+    plot.background  = element_rect(fill = "black", color = "black"),
+    panel.background = element_rect(fill = "black"),
+    panel.grid.major = element_line(color = "grey50", linewidth = 0.3),
+    panel.grid.minor = element_blank(),
+    text = element_text(color = "white", size = 14),
+    plot.title = element_text(face = "bold", color = "white"),
+    axis.text = element_text(color = "grey80"),
+    axis.title.x = element_text(color = "white", margin = margin(t = 12)),
+    axis.title.y = element_text(color = "white", margin = margin(r = 15))
+  )   
     </code></pre>
           </details>
           
