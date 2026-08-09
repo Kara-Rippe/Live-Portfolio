@@ -292,7 +292,7 @@
       color: #ffffffff;
     }
     
-    /* drop-down for UX case studies text */
+    /* Drop-down for UX case studies text */
     .case-study-dropdown {
       margin-top: 25px;
       margin-bottom: 15px;
@@ -312,14 +312,14 @@
       color: #3b82f6;
     }
 
-    /* Adds a subtle line between the button and the text when opened */
+    /* Adds line between the button and the text when opened */
     .case-study-content {
       margin-top: 15px;
       padding-top: 15px;
       border-top: 1px solid #475569;
     }
 
-    /* compairson */
+    /* Comparison */
     .image-comparison-grid {
       display: flex;
       gap: 20px;
@@ -328,27 +328,47 @@
       align-items: stretch; /* keeps both columns the same height */
     }
 
-    /* Solution B: Scrollable Card Container for Side-by-Side Images */
     .image-column {
       flex: 1;
-      height: 480px; /* Equal card height for desktop */
-      overflow-y: auto; /* Adds inner scrollbar for taller images */
+      height: 480px; /* equal card height for desktop */
+      overflow-y: auto; /* inner scrollbar */
+      scrollbar-width: thin; /* fireox compat */
+      scrollbar-color: #475569 #192231;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       background-color: #1e293b;
       padding: 10px;
       box-sizing: border-box;
       text-align: center;
-      position: relative; /* positioning : natural spot in document flow */
+      position: relative; /* positioning */
     }
 
     .image-column p {
       margin-top: 0;
     }
 
+    /* Thinner Scrollbar */
+    .image-column::-webkit-scrollbar {
+      width: 6px; /* makes the vertical scrollbar thin */
+    }
+
+    .image-column::-webkit-scrollbar-track {
+      background: #192231; /* dark background for the scrollbar path */
+      border-radius: 4px;
+    }
+
+    .image-column::-webkit-scrollbar-thumb {
+      background: #475569; /* color of the scroll bar */
+      border-radius: 4px;
+    }
+
+    .image-column::-webkit-scrollbar-thumb:hover {
+      background: #64748b; /* lighter color when hovering over the scrollbar */
+    }
+
     .full-width-mockup {
       width: 100%;
-      height: auto; /* Natural scale prevents blur/distortion */
+      height: auto; /* scale for blur/distortion */
       margin-bottom: 25px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -368,7 +388,7 @@
       border-radius: 4px;
     }
 
-    /* purple modifier for buttons : ux/ui design */
+    /* Purple modifier for buttons : ux/ui design */
     .project-card a.btn-purple { /* btn-purple in project-card anchor nav */
       background-color: #8b5cf6;
     }
@@ -377,26 +397,26 @@
       background-color: #7c3aed;
     }
 
-    /* The collapsible box Container for code */
+    /* Collapsible box Container for project code */
     .code-dropdown {
       margin-top: 15px;
       margin-bottom: 15px;
-      background-color: #1e293b; /* Darker than the card to look like an inset box */
+      background-color: #1e293b; /* darker than the card to look like an inset box */
       border-radius: 6px;
       border: 1px solid #475569;
       overflow: hidden;
     }
 
-    /* The Clickable Button */
+    /* The clickable button */
     .code-dropdown summary {
       padding: 10px 15px;
       font-family: "Courier New", Courier, monospace;
       font-size: 0.85rem;
-      color: #93c5fd; /* Light blue text */
+      color: #93c5fd; /* light blue text */
       cursor: pointer;
       font-weight: 600;
       background-color: #282C34; /* slightly lighter top bar */
-      user-select: none; /* Prevents text highlighting when double clicking */
+      user-select: none; /* prevents text highlighting when double clicking */
     }
 
     /* Hover effect for the clickable button */
@@ -405,7 +425,7 @@
       color: #3b82f6;
     }
 
-    /* The Code Text Area */
+    /* Project code area */
     .code-dropdown pre {
       margin: 0;
       padding: 15px;
@@ -418,20 +438,20 @@
       color: #a78bfa;
     }
 
-    /* targets every clickable image */
+    /* Targets every clickable image */
     .mock-img {
       cursor: pointer;
       transition: all 0.2s ease-in-out; /* animation */
     }
 
-    /* images react when hovered */
+    /* Images react when hovered */
     .mock-img:hover {
       transform: translateY(-2px); /* Lifts image up slightly */
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* deeper shadow */
       border-color: #3b82f6; /* tints the border blue */
     }
 
-    /* for mobile response : viewed off desktop */
+    /* Mobile response : viewed off desktop */
     @media (max-width: 600px) {
       .image-comparison-grid {
         flex-direction: column; /* column style */
@@ -571,18 +591,18 @@
             </div>
             <div class="image-column">
               <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9ab0c5; margin-bottom: 8px;">High-Fidelity Mockup (Top)</p>
-              <img class="mock-img" src="nex2.png" alt="Nexus Redesign 2 View 1">
+              <img class="mock-img" src="nex2.png" alt="Nexus Mods Redesign View 2">
             </div>
           </div>
 
           <div class="image-comparison-grid">
             <div class="image-column">
-              <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9ab0c5; margin-bottom: 8px;">High-Fidelity Mockup (Bottom)</p>
-              <img class="mock-img" src="2_Nexus.png" alt="Nexus Mods Redesign Mockup View">
+              <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9ab0c5; margin-bottom: 8px;">High-Fidelity Mockup Optimization (Bottom)</p>
+              <img class="mock-img" src="2_Nexus.png" alt="Nexus Mods Redesign Mockup View 3">
             </div>
             <div class="image-column">
-              <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9ab0c5; margin-bottom: 8px;">High-Fidelity Mockup (Bottom)</p>
-              <img class="mock-img" src="nex3.png" alt="Nexus Redesign 2 View">
+              <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9ab0c5; margin-bottom: 8px;">High-Fidelity Mockup Optimzation (Bottom)</p>
+              <img class="mock-img" src="nex3.png" alt="Nexus Redesign Mockup View 4">
             </div>
           </div>
 
