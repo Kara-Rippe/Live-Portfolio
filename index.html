@@ -345,6 +345,21 @@
   align-items: center; /* Center vertically */
 }
 
+  .full-width-mockup {
+  width: 100%;
+  height: auto; /* Natural scale prevents blur/distortion */
+  margin-bottom: 25px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.img-label {
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  color: #9ab0c5;
+  margin-bottom: 8px;
+}  
+
 .image-column .mock-img {
   display: block;
   max-width: 100%;
@@ -494,16 +509,13 @@
           <p>An interactive design project focused on reduction of cognitive load and player immersion through design decisions.</p>
           
           <div class="project-card-section-title">Design Evolution</div>
-          
-          <div class="image-comparison-grid">
-            <div class="image-column">
-              <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #9ab0c5; margin-bottom: 8px;">[01] Original Layout</p>
-              <img class="mock-img" src="HUD Design.png" alt="HUD Design">
-            </div>
-            <div class="image-column">
-              <p style="font-family: 'Courier New', monospace; font-size: 0.9rem; color: #3399CC; margin-bottom: 8px;">[02] Optimized Iteration</p>
-              <img class="mock-img" src="HUD Design 2.png" alt="Cleaned Mockup">
-            </div>
+          <div class="single-image-wrapper">
+  <p class="img-label">[01] High-Fidelity Mockup</p>
+  <img class="mock-img full-width-mockup" src="1_Nexus.png" alt="Nexus Mods Redesign">
+  
+  <p class="img-label">[02] Visual Architecture</p>
+  <img class="mock-img full-width-mockup" src="nex2.png" alt="Nexus Redesign Architecture">
+</div>
           </div>
 
           <details class="case-study-dropdown">
